@@ -1,9 +1,15 @@
 package com.xmas.game.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity(name="GAME_USER")
 public class User {
@@ -13,10 +19,15 @@ public class User {
 
 	    private String name;
 
+	    @UniqueElements
+	    @Column(nullable = false)
 	    private String email;
 	    
 	    private String password;
 
+	    @OneToMany(targetEntity= UserGroup.class)
+	    List<UserGroup> userInGroups;
+	    
 		public Long getId() {
 			return id;
 		}
@@ -47,6 +58,14 @@ public class User {
 
 		public void setPassword(String password) {
 			this.password = password;
+		}
+
+		public List<UserGroup> getUserInGroups() {
+			return userInGroups;
+		}
+
+		public void setUserInGroups(List<UserGroup> userInGroups) {
+			this.userInGroups = userInGroups;
 		}
 
 		@Override
