@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 @Entity(name="GAME_USER")
 public class User {
 	  	@Id
@@ -19,7 +17,6 @@ public class User {
 
 	    private String name;
 
-	    @UniqueElements
 	    @Column(nullable = false)
 	    private String email;
 	    
